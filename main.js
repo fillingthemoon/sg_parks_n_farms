@@ -10,12 +10,20 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
     accessToken: 'pk.eyJ1IjoiZmlsbGluZ3RoZW1vb24iLCJhIjoiY2tpaGxrbjZmMDNicTJ4bThmd3preWJvbyJ9.ca_X_SaaPktyuEBL2RzoRA'
 }).addTo(mymap);
 
-mymap.setMaxBounds(mymap.getBounds());
+// Set Max Bounds
+var southWest = L.latLng(1.1627543474077802, 103.49224090576172),
+  northEast = L.latLng(1.483331893392633, 104.14764404296875),
+  bounds = L.latLngBounds(southWest, northEast);
+mymap.setMaxBounds(bounds);
 
 fetch("https://philemonheng.com/sg_parks_n_farms/geojsons/parks.json")
   .then(function(response) {
     return response.json();
   })
   .then(function(data) {
-    L.geoJSON(data).addTo(mymap);
+    L.geoJSON(data, {
+      style: function(feature) {
+        return { color: "#658a49" };
+      }
+    }).addTo(mymap);
   });
