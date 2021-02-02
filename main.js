@@ -12,3 +12,10 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 
 mymap.setMaxBounds(mymap.getBounds());
 
+fetch("https://philemonheng.com/sg_parks_n_farms/geojsons/parks.json")
+  .then(function(response) {
+    return response.json();
+  })
+  .then(function(data) {
+    L.geoJSON(data).addTo(mymap);
+  });
