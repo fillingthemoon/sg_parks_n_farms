@@ -1,11 +1,26 @@
 body {
-  text-align: center;
   font-family: 'Open Sans', sans-serif;
-  color: #383838;
+  margin: 0;
+  height: 100vh;
+}
+
+nav {
+  display: grid;
+  min-height: 50px;
+  height: 6%;
+  width: 100vw;
+  align-items: center;
+  background-color: #262626;
+}
+
+h1 {
+  margin: 0px 40px 0px 20px;
+  font-size: 20px;
+  color: white;
 }
 
 #mapid {
-  height: 600px; 
-  width: 80%;
+  height: 94%;
+  width: 100vw;
   margin: auto;
 }
