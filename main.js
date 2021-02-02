@@ -11,3 +11,5 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(mymap);
 
 mymap.setMaxBounds(mymap.getBounds());
+
+var myGeoJSON = 
