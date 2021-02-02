@@ -1,0 +1,11 @@
+body {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  color: #383838;
+}
+
+#mapid {
+  height: 600px; 
+  width: 80%;
+  margin: auto;
+}
