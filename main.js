@@ -37,21 +37,20 @@ $.getJSON("https://philemonheng.com/sg_parks_n_farms/geojsons/farms_pts.json", f
 
   L.geoJSON(farms_pts, {
     pointToLayer: function (feature, latlng) {
-      return L.circleMarker(latlng, geojsonMarkerOptions);
+      var marker = L.circleMarker(latlng, geojsonMarkerOptions);
+      marker.on('click', openNav); // click on marker to open panel
+      return marker;
     },
 
-    onEachFeature: onEachFeature
+    onEachFeature: function onEachFeature(feature, layer) {
+      if (feature.properties && feature.properties.farm)
+        layer.bindTooltip(feature.properties.farm);
+    }
 
-  }).on('click', openNav) // open info window
-    .addTo(mymap);
+  }).addTo(mymap);
 });
 
-function onEachFeature(feature, layer) {
-  if (feature.properties && feature.properties.farm)
-    layer.bindTooltip(feature.properties.farm);
-}
-
-function openNav() {
+function openNav(e) {
   var nav = document.getElementById("info-panel");
   if (nav.style.width = "0") {
     if (window.matchMedia("(max-width: 420px)").matches) {
@@ -60,13 +59,37 @@ function openNav() {
       nav.style.width = "500px";
     }
   }
+  setTimeout(function(){ populateInfoPanel(e); }, 300);
 }
 
 function closeNav() {
-  var nav = document.getElementById("info-panel");
-  if (nav.style.width == "500px" || nav.style.width == "300px") {
-    nav.style.width= "0";
+  var infoPanel = document.getElementById("info-panel");
+  if (infoPanel.style.width == "500px" || infoPanel.style.width == "300px") {
+    infoPanel.style.width= "0";
   }
+  var infoPanelContent = document.getElementById("info-panel-content");
+  infoPanelContent.innerHTML = "";
 }
 
+function populateInfoPanel(e) {
+  var infoPanelContent = document.getElementById("info-panel-content");
+  infoPanelContent.innerHTML = "";
+  var header = document.createElement("h1");
+  header.textContent = e.target.feature.properties.farm;
+  var paragraph = document.createElement("p");
+  //paragraph.textContent = e.target.feature.properties.address;
+  paragraph.textContent = 'iaugue lacus viverra vitae congue eu consequat ac felis donec et odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales ut eu sem integer vitae justo eget magna fermentum iaculis eu non diam phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget duis at tellus at urna condimentum mattis pellentesque id nibh augue lacus viverra vitae congue eu consequat ac felis donec et odio pellentesque diam volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien nec sagittis aliquam malesuada bibendum arcu vitae elementum curabitur vitae nunc sed velit dignissim sodales ut eu sem integer vitae justo eget magna fermentum iaculis eu non diam phasellus vestibulum lorem sed risus ultricies tristique nulla aliquet enim tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget duis at tellus at urna condimentum mattis pellentesque id nibh';
+  infoPanelContent.appendChild(header);
+  infoPanelContent.appendChild(paragraph);
 
+  var steps = 0
+  var timer = setInterval(function() {
+    steps++;
+    header.style.opacity = 0.05 * steps;
+    paragraph.style.opacity = 0.05 * steps;
+    if(steps >= 20) {
+      clearInterval(timer);
+      timer = undefined;
+    }
+  }, 50);
+}
