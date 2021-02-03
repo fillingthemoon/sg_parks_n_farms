@@ -12,10 +12,10 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(mymap);
 
 // Set Max Bounds
-var southWest = L.latLng(1.1593218247333539, 103.49224090576172),
-  northEast = L.latLng(1.5004922118779245, 104.14764404296875),
+var northEast = L.latLng(1.5004922118779245, 104.16824340820312),
+  southWest = L.latLng(1.1593218247333539, 103.51181030273438),
   bounds = L.latLngBounds(southWest, northEast);
-//mymap.setMaxBounds(bounds);
+mymap.setMaxBounds(bounds);
 
 // NParks Parks
 fetch("https://philemonheng.com/sg_parks_n_farms/geojsons/parks.json")
