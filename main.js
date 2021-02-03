@@ -46,4 +46,4 @@ $.getJSON("https://philemonheng.com/sg_parks_n_farms/geojsons/farms_pts.json", f
     }
 
   }).addTo(mymap);
-);
+});
