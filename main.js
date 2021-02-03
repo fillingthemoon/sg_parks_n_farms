@@ -18,7 +18,7 @@ var northEast = L.latLng(1.5004922118779245, 104.16824340820312),
 mymap.setMaxBounds(bounds);
 
 // NParks Parks
-fetch("https://philemonheng.com/sg_parks_n_farms/geojsons/parks.json")
+fetch("https://philemonheng.com/sg_parks_n_farms/geojsons/farms_pts.json")
   .then(function(response) {
     return response.json();
   })
