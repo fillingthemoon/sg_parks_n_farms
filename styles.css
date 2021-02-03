@@ -6,12 +6,11 @@ body {
 }
 
 nav {
-  position: relative;
+  position: fixed;
   z-index: 1;
 
   display: grid;
-  min-height: 50px;
-  height: 6%;
+  height: 50px;
   width: 100%;
   align-items: center;
   background-color: #3d696e;
@@ -19,17 +18,17 @@ nav {
 }
 
 h1 {
-  margin: 0px 40px 0px 20px;
+  margin: 0px 20px 0px 20px;
   font-size: 20px;
   font-weight: 600;
   color: white;
 }
 
 #mapid {
-  position: relative;
+  position: fixed;
   z-index: 0;
 
-  height: 94%;
+  height: 100%;
   width: 100%;
   margin: auto;
 }

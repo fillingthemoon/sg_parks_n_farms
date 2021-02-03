@@ -1,4 +1,5 @@
-var mymap = L.map('mapid', { zoomControl: false }).setView([1.323, 103.8198], 12);
+// Set up my map
+var mymap = L.map('mapid', { zoomControl: false }).setView([1.33, 103.8198], 12);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -11,11 +12,12 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(mymap);
 
 // Set Max Bounds
-var southWest = L.latLng(1.1627543474077802, 103.49224090576172),
-  northEast = L.latLng(1.483331893392633, 104.14764404296875),
+var southWest = L.latLng(1.1593218247333539, 103.49224090576172),
+  northEast = L.latLng(1.5004922118779245, 104.14764404296875),
   bounds = L.latLngBounds(southWest, northEast);
 mymap.setMaxBounds(bounds);
 
+// NParks Parks
 fetch("https://philemonheng.com/sg_parks_n_farms/geojsons/parks.json")
   .then(function(response) {
     return response.json();
