@@ -1,19 +1,19 @@
 // Set up my map
-var mymap = L.map('mapid', { zoomControl: false }).setView([1.33, 103.84], 12);
+var center = L.bounds([1.5008354168795537, 104.23793792724611], [1.1596650771882608, 103.58150482177736]).getCenter();
+var mymap = L.map('mapid', { zoomControl: false }).setView([center.x, center.y], 12);
 
-L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-    maxZoom: 18,
-    minZoom: 12,
-    id: 'mapbox/light-v10',
-    tileSize: 512,
-    zoomOffset: -1,
-    accessToken: 'pk.eyJ1IjoiZmlsbGluZ3RoZW1vb24iLCJhIjoiY2tpaGxrbjZmMDNicTJ4bThmd3preWJvbyJ9.ca_X_SaaPktyuEBL2RzoRA'
+L.tileLayer('https://maps-{s}.onemap.sg/v3/Grey/{z}/{x}/{y}.png', {
+  detectRetina: true,
+  maxZoom: 18,
+  minZoom: 12,
+  //Do not remove this attribution
+  attribution: '<img src="https://docs.onemap.sg/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> New OneMap | Map data &copy; contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'
 }).addTo(mymap);
 
 // Set Max Bounds
-var northEast = L.latLng(1.5004922118779245, 104.16824340820312),
-  southWest = L.latLng(1.1593218247333539, 103.51181030273438),
+console.log(mymap.getBounds());
+var northEast = L.latLng(1.5008354168795537, 104.23793792724611),
+  southWest = L.latLng(1.1596650771882608, 103.58150482177736),
   bounds = L.latLngBounds(southWest, northEast);
 mymap.setMaxBounds(bounds);
 
@@ -47,4 +47,3 @@ $.getJSON("https://philemonheng.com/sg_parks_n_farms/geojsons/farms_pts.json", f
 
   }).addTo(mymap);
 });
-
