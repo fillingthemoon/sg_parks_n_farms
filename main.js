@@ -17,15 +17,22 @@ var northEast = L.latLng(1.5004922118779245, 104.16824340820312),
   bounds = L.latLngBounds(southWest, northEast);
 mymap.setMaxBounds(bounds);
 
-// NParks Parks
-fetch("https://philemonheng.com/sg_parks_n_farms/geojsons/farms_pts.json")
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function(data) {
-    L.geoJSON(data, {
-      style: function(feature) {
-        return { color: "#658a49" };
-      }
-    }).addTo(mymap);
-  });
+// Style markers
+var geojsonMarkerOptions = {
+  radius: 9,
+  fillColor: "#3d696e",
+  color: "#3d696e",
+  weight: 1,
+  opacity: 1,
+  fillOpacity: 0.6
+};
+
+// Singapore's farms 
+$.getJSON("https://philemonheng.com/sg_parks_n_farms/geojsons/farms_pts.json", function(farms_pts) {
+  L.geoJSON(farms_pts, {
+    pointToLayer: function (feature, latlng) {
+      return L.circleMarker(latlng, geojsonMarkerOptions);
+    }
+  }).addTo(mymap);
+});
+
