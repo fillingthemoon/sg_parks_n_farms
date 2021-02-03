@@ -33,3 +33,9 @@ h1 {
   width: 100%;
   margin: auto;
 }
+
+.leaflet-tooltip {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+}

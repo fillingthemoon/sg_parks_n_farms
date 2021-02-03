@@ -29,10 +29,22 @@ var geojsonMarkerOptions = {
 
 // Singapore's farms 
 $.getJSON("https://philemonheng.com/sg_parks_n_farms/geojsons/farms_pts.json", function(farms_pts) {
+
+  // iteratively add popupContent for testing
+  for (i in farms_pts["features"]) {
+    farms_pts["features"][i]["properties"]["popupContent"] = "testing";
+  }
+
   L.geoJSON(farms_pts, {
     pointToLayer: function (feature, latlng) {
       return L.circleMarker(latlng, geojsonMarkerOptions);
+    },
+
+    onEachFeature: function (feature, layer) {
+      if (feature.properties && feature.properties.farm)
+        layer.bindTooltip(feature.properties.farm);
     }
+
   }).addTo(mymap);
 });
 
