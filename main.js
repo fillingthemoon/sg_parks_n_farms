@@ -40,10 +40,33 @@ $.getJSON("https://philemonheng.com/sg_parks_n_farms/geojsons/farms_pts.json", f
       return L.circleMarker(latlng, geojsonMarkerOptions);
     },
 
-    onEachFeature: function (feature, layer) {
-      if (feature.properties && feature.properties.farm)
-        layer.bindTooltip(feature.properties.farm);
-    }
+    onEachFeature: onEachFeature
 
-  }).addTo(mymap);
+  }).on('click', openNav) // open info window
+    .addTo(mymap);
 });
+
+function onEachFeature(feature, layer) {
+  if (feature.properties && feature.properties.farm)
+    layer.bindTooltip(feature.properties.farm);
+}
+
+function openNav() {
+  var nav = document.getElementById("info-panel");
+  if (nav.style.width = "0") {
+    if (window.matchMedia("(max-width: 420px)").matches) {
+      nav.style.width = "300px";
+    } else {
+      nav.style.width = "500px";
+    }
+  }
+}
+
+function closeNav() {
+  var nav = document.getElementById("info-panel");
+  if (nav.style.width == "500px" || nav.style.width == "300px") {
+    nav.style.width= "0";
+  }
+}
+
+
