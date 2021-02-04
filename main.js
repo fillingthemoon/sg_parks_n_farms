@@ -1,5 +1,7 @@
 // Set up my map
-var mymap = L.map('mapid', { zoomControl: false }).setView([1.33, 103.84], 12);
+var mymap = L.map('mapid', { 
+  zoomControl: false,
+}).setView([1.33, 103.84], 12);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
@@ -12,8 +14,8 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(mymap);
 
 // Set Max Bounds
-var northEast = L.latLng(1.5004922118779245, 104.16824340820312),
-  southWest = L.latLng(1.1593218247333539, 103.51181030273438),
+var northEast = L.latLng(1.5004, 104.1682),
+  southWest = L.latLng(1.1593, 103.5118),
   bounds = L.latLngBounds(southWest, northEast);
 mymap.setMaxBounds(bounds);
 
