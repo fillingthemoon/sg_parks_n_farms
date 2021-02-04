@@ -55,14 +55,14 @@ h1 {
 
 #info-panel-content > h1 {
   color: #4d4c4c;
-  margin: 40px 3rem 20px 3rem;
+  margin: 40px 50px 20px 50px;
   opacity: 0;
 }
 
 #info-panel-content > p {
   font-weight: 300;
   color: #707070;
-  margin: 20px 3rem 60px 3rem;
+  margin: 20px 50px 60px 50px;
   opacity: 0;
   text-align: justify;
 }
