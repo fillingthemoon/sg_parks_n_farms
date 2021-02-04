@@ -40,11 +40,11 @@ h1 {
 
 #x-btn {
   position: absolute;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   top: 1rem;
   right: 1rem;
   text-decoration: none;
-  color: #4d4c4c;
+  color: #707070;
   transition: 0.2s;
 }
 
@@ -55,15 +55,16 @@ h1 {
 
 #info-panel-content > h1 {
   color: #4d4c4c;
-  margin: 40px 40px 20px 40px;
+  margin: 40px 3rem 20px 3rem;
   opacity: 0;
 }
 
 #info-panel-content > p {
   font-weight: 300;
   color: #707070;
-  margin: 20px 40px 60px 40px;
+  margin: 20px 3rem 60px 3rem;
   opacity: 0;
+  text-align: justify;
 }
 
 #mapid {
